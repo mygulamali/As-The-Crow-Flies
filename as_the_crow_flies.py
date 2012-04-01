@@ -5,7 +5,7 @@ import json
 import urllib
 import requests
 import time
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 # conversion factor from degrees to radians
 DEGREES2RADIANS = pi/180.0
@@ -108,7 +108,10 @@ def as_the_crow_flies():
                                    0.0,
                                    'km')
     response['result']['elapsed'] = (time.time() - t_start)*1.0e3
-    return json.dumps(response)
+    http_response = make_response(json.dumps(response))
+    http_response.headers['Content-type'] = 'application/json'
+    http_response.headers['Access-Control-Allow-Origin'] = '*'
+    return http_response
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -121,10 +124,12 @@ def page_not_found(error):
                                '',
                                '')
     response['result']['elapsed'] = (time.time() - t_start)*1.0e3
-    return json.dumps(response), 404
+    http_response = make_response((json.dumps(response),404))
+    http_response.headers['Content-type'] = 'application/json'
+    http_response.headers['Access-Control-Allow-Origin'] = '*'
+    return http_response
 
 # ----------------------------------------------------------------------------
 
 if __name__=="__main__":
   app.run(debug=True)
-
