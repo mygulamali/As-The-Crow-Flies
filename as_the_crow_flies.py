@@ -7,6 +7,11 @@ import requests
 import time
 from flask import Flask, request, make_response
 
+# server settings
+HOST = '127.0.0.1'
+PORT = 5000
+DEBUG_MODE = False
+
 # conversion factor from degrees to radians
 DEGREES2RADIANS = pi/180.0
 
@@ -55,9 +60,9 @@ def get_distance(lat,lng,units=None):
 
 def parse_query(args):
   """Parse request query and return parameters."""
-  address = args.get('q')
+  query = args.get('q')
   units = args.get('u')
-  return (address, units)
+  return (query, units)
 
 def create_response(code,message,lat,lng,address,distance,units):
     """Create response using specified parameters."""
@@ -77,28 +82,27 @@ app = Flask(__name__)
 @app.route("/as_the_crow_flies")
 def as_the_crow_flies():
     t_start = time.time()
-    address, units = parse_query(request.args)
-    if address:
-        geocoded = geocode_address(address)
-        if (geocoded) and (len(geocoded[u'results'])>0):
-            lat = geocoded[u'results'][0][u'geometry'][u'location'][u'lat']
-            lng = geocoded[u'results'][0][u'geometry'][u'location'][u'lng']
-            formatted_address = geocoded[u'results'][0][u'formatted_address']
+    query, units = parse_query(request.args)
+    if query:
+        position = geocode_address(query)
+        if (position) and (len(position[u'results'])>0):
+            lat = position[u'results'][0][u'geometry'][u'location'][u'lat']
+            lng = position[u'results'][0][u'geometry'][u'location'][u'lng']
             response = create_response(200,
                                        'Successful query',
                                        lat,
                                        lng,
-                                       formatted_address,
+                                       position[u'results'][0][u'formatted_address'],
                                        get_distance(lat,lng,units),
                                        units if units else 'km')
         else:
             response = create_response(400,
-                                       'Query could not be geocoded',
+                                       'Badly formed query',
                                        '',
                                        '',
-                                       address,
                                        '',
-                                       'km')
+                                       '',
+                                       '')
     else:
         response = create_response(204,
                                    'No valid query made',
@@ -132,4 +136,4 @@ def page_not_found(error):
 # ----------------------------------------------------------------------------
 
 if __name__=="__main__":
-  app.run(debug=True)
+  app.run(debug=DEBUG_MODE, host=HOST, port=PORT)

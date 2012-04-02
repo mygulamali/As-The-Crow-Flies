@@ -6,55 +6,73 @@
 	<style>
 	    html { font-size: 62.5%; margin: 0; padding: 0; height: 100%; }
 	    body { font-family: 'Helvetica', 'Arial', sans-serif; color: #333; font-size: 20px; font-size: 2.0rem; margin: 0; padding: 0; height: 100%; }
-	    input, button, select { font-size: 20px; font-size: 2.0rem; }
+	    option { font-size: 20px; font-size: 2.0rem; }
+	    button { font-size: 35px; font-size: 3.5rem; }
 	    a, a:link, a:visited { color: #1777af; text-decoration: none; }
 	    a:hover, a:active { color: #333; text-decoration: none; }
-        #floater { position: relative; float: left; height: 50%; margin-bottom: -200px; width: 1px; }
-	    #content { clear: both; position: relative; width: 50%; height: 400px; margin: 0 auto; border: 1px solid #ccc; }
+        #floater { position: relative; float: left; height: 50%; margin-bottom: -325px; width: 1px; }
+	    #content { clear: both; position: relative; width: 50%; height: 650px; margin: 0 auto; border: 1px solid #ccc; }
 	    header { text-align: center; }
-	    #controls, #results { text-align: center; padding: 1em; }
+	    #map { width: 50%; height: 200px; color: #ccc; background-color: #eee; border: 1px solid #ccc; margin: 0 auto; text-align: center; padding: 1em; }
+	    #results { text-align: center; padding: 1em; }
 	    #results .distance, #results .units { color: #777; font-size: 42px; font-size: 4.2rem; }
 	    #results .address { color: #777; }
 	</style>
 </head>
 <body>
 
-<div id="floater"></div>
-<div id="content">
-    <header>
-        <h1>As The Crow Flies Example</h1>
-    </header>
+<header>
+    <h1>As The Crow Flies Example</h1>
+</header>
 
-    <div id="controls">
-        Please enter a location:<br />
-        <input id="query" type="textbox" value="" size="40" onkeydown="if (event.keyCode==13) document.getElementById('go').click()" />
-        <button id="go" type="submit" name="Go" value="Go" class="button" onclick="go()">Go</button><br />
-        Units?
-        <select id="units">
-            <option value="km" selected>km</option>
-            <option value="miles">miles</option>
-            <option value="m">metres</option>
-            <option value="yards">yards</option>
-        </select>
-    </div>
+<div id="map">MAP</div>
+
+<div id="results">
+    <p>As the crow flies, <a href="http://whitebearyard.com/">White Bear Yard</a> is:<br />
+    <span class="distance">0.0</span> <span class="units">km</span><br />
+    from your current location:<br />
+    <span class="address">144A Clerkenwell Rd, London, Greater London EC1R 5DF, UK</span></p>
     
-    <div id="results">
-        As the crow flies, <a href="http://whitebearyard.com/">White Bear Yard</a> is:<br />
-        <span class="distance">0.0</span> <span class="units">km</span><br />
-        from your chosen location of:<br />
-        <span class="address">144A Clerkenwell Rd, London, Greater London EC1R 5DF, UK</span>
-    </div>
+    <p>Units?
+    <select id="units" onchange="refresh()">
+        <option value="km" selected>km</option>
+        <option value="miles">miles</option>
+        <option value="m">metres</option>
+        <option value="yards">yards</option>
+    </select></p>
+    <p><button id="refresh" type="submit" name="Refresh" value="Refresh" class="button" onclick="refresh()">Refresh</button></p>       
 </div>
 
-<script>
-function go() {
-    url = 'http://127.0.0.1:5000/as_the_crow_flies'
-    $.get(url, {'q': $('#query')[0].value, 'u': $('#units')[0].value}, function(data) {
-        $('#results .distance')[0].innerHTML = Math.round(data['result']['distance']*1000)/1000 
-        $('#results .units')[0].innerHTML = data['result']['units']
-        $('#results .address')[0].innerHTML = data['result']['address']
+<script type="text/javascript">
+function checkGeolocation() {
+    if (navigator.geolocation) {
+        refresh();
+    } else {
+        $('#results')[0].innerHTML = "<p>Sorry, your browser doesn't support <a href=\"http://dev.w3.org/geo/api/spec-source.html\">W3C geolocation</a>.<br />You should use a <a href=\"https://www.google.com/chrome\">better browser</a>.</p>";
+    }
+}
+
+function getDistance(position) {
+    url = 'http://127.0.0.1:5000/as_the_crow_flies';
+    query = position.coords.latitude.toString()+','+position.coords.longitude.toString();
+    $.get(url, {'q': query, 'u': $('#units')[0].value}, function(data) {
+        $('#results .distance')[0].innerHTML = Math.round(data['result']['distance']*1000)/1000;
+        $('#results .units')[0].innerHTML = data['result']['units'];
+        $('#results .address')[0].innerHTML = data['result']['address'];
     })
 }
+
+function handleError(error) {
+    alert(error.message);
+}
+
+function refresh() {
+    navigator.geolocation.getCurrentPosition(getDistance,handleError);
+}
+
+$(document).ready(function(){
+    checkGeolocation();
+});
 </script>
 
 </body>
