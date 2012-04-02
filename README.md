@@ -62,11 +62,11 @@ GET HTTP method:
 This is called with the following parameters:
 
 <table>
-    <th>
-        <td>Parameter</td>
-        <td>Example</td>
-        <td>Details</td>
-    </th>
+    <tr>
+        <th>**Parameter**</th>
+        <th>**Example**</th>
+        <th>**Details**</th>
+    </tr>
     <tr>
         <td>`q`</td>
         <td>`Google Campus, London`</td>
@@ -83,6 +83,12 @@ This is called with the following parameters:
         one of these, or this keyword is ommited, the result defaults to `km`.</td>
     </tr>
 </table>
+
+Thus an example request may be something like:
+
+`http://www.example.com/as_the_crow_flies?q=Google%20Campus%2C%20London&u=miles`
+
+Note: it's always a code idea to URL escape characters in the parameter strings.
 
 #### Response
 
@@ -106,10 +112,10 @@ The web service responds with a JSON response such as:
 where each field is as follows:
 
 <table>
-    <th>
-        <td>Field</td>
-        <td>Details</td>
-    </th>    
+    <tr>
+        <th>Field</th>
+        <th>Details</th>
+    </tr>    
     <tr>
         <td>`message`</td>
         <td>Message associated with status of response.</td>
