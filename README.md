@@ -35,7 +35,18 @@ function (line 56) to have the same hostname and port number.
 
 #### Local deployment
 
+In a terminal window, navigate to the directory containing this project and
+then execute:
+`python as_the_crow_flies.py`
+in order to run the web service.
 
+Then, in another terminal window, in the project directory, execute:
+`python -m SimpleHTTPServer`
+to begin a web server.  This will inform you where the HTTP server is being
+served eg.
+`Serving HTTP on 0.0.0.0 port 8000 ...`
+Navigate to the `example.html` file using the associated URL in your browser
+(eg. `http://0.0.0.0:8000/example.html`) to view the web page.
 
 #### Remote deployment
 
