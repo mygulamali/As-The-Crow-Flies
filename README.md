@@ -63,22 +63,22 @@ This is called with the following parameters:
 
 <table>
     <tr>
-        <th>**Parameter**</th>
-        <th>**Example**</th>
-        <th>**Details**</th>
+        <th>Parameter</th>
+        <th>Example</th>
+        <th>Details</th>
     </tr>
     <tr>
-        <td>`q`</td>
-        <td>`Google Campus, London`</td>
-        <td>**required** A query string containing a location.  This could be
+        <td><code>q</code></td>
+        <td><code>Google Campus, London</code></td>
+        <td><strong>required</strong> A query string containing a location.  This could be
         a latitude and longitude pair separated by a comma, or an address.
         This will be geocoded by Google Maps geocoder so it may be fairly
         general.</td>
     </tr>
     <tr>
-        <td>`u`</td>
-        <td>`miles`</td>
-        <td>**optional** A keyword which indicates the units for the resulting
+        <td><code>u</code></td>
+        <td><code>miles</code></td>
+        <td><strong>optional</strong> A keyword which indicates the units for the resulting
         query.  This may be one of `km`, `m`, `miles` or `yards`.  If it is not
         one of these, or this keyword is ommited, the result defaults to `km`.</td>
     </tr>
@@ -95,18 +95,20 @@ Note: it's always a code idea to URL escape characters in the parameter strings.
 The web service responds with a JSON response such as:
 
     {
-      "status": {
-        "message": ...,
-        "code": ...
-      },
-      "result": {
-        "distance": ...,
-        "elapsed": ...,
-        "units": ...,
-        "address": ...,
-        "lat": ...,
-        "lng": ...
-      }
+        "status":
+        {
+            "message": ...,
+            "code": ...
+        },
+        "result":
+        {
+            "distance": ...,
+            "elapsed": ...,
+            "units": ...,
+            "address": ...,
+            "lat": ...,
+            "lng": ...
+        }
     }
 
 where each field is as follows:
@@ -117,37 +119,37 @@ where each field is as follows:
         <th>Details</th>
     </tr>    
     <tr>
-        <td>`message`</td>
+        <td><code>message</code></td>
         <td>Message associated with status of response.</td>
     </tr>
     <tr>
-        <td>`code`</td>
+        <td><code>code</code></td>
         <td>HTTP response code.</td>
     </tr>
     <tr>
-        <td>`distance`</td>
+        <td><code>distance</code></td>
         <td>Distance between queried address and [White Bear Yard][3].</td>
     </tr>
     <tr>
-        <td>`elapsed`</td>
+        <td><code>elapsed</code></td>
         <td>Number of milliseconds required to process query.  This does not
         include the transit time for sending the request or receiving the
         response.</td>
     </tr>
     <tr>
-        <td>`units`</td>
+        <td><code>units</code></td>
         <td>Physical units of the distance value.</td>
     </tr>
     <tr>
-        <td>`address`</td>
+        <td><code>address</code></td>
         <td>Formatted address of the queried address.</td>
     </tr>
     <tr>
-        <td>`lat`</td>
+        <td><code>lat</code></td>
         <td>Latitude of the queried address.</td>
     </tr>
     <tr>
-        <td>`lng`</td>
+        <td><code>lng</code></td>
         <td>Longitude of the queried address.</td>
     </tr>
 </table>
