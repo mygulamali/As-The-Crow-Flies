@@ -22,10 +22,10 @@ supports the [W3C geolocation][5] specifications.  My personal favourite is
 
 ## Setup
 
-...
+MORE TO COME HERE...
 
 The [Flask][2] documentation has some good tutorials about how to deploy the
-web service ([here][5] and [here][6]) on your particular server environment.
+web service ([here][7] and [here][8]) on your particular server environment.
 
 ## License
 
@@ -38,4 +38,6 @@ License][10].  Please see the license.txt file for more details.
 [4]: http://docs.python-requests.org/en/latest/index.html "Requests"
 [5]: http://dev.w3.org/geo/api/spec-source.html "W3C geolocation specifications"
 [6]: https://www.google.com/chrome "Google Chrome"
+[7]: http://flask.pocoo.org/docs/deploying/ "Deployment options for Flask"
+[8]: http://flask.pocoo.org/docs/quickstart/#quickstart-deployment "Deploying to a web server"
 [10]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
