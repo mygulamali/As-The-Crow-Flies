@@ -8,13 +8,22 @@ of a web service and web page that calculates the "as the crow flies" distance
 between the user's location and [White Bear Yard][3] at 144A Clerkenwell Road,
 London, EC1R 5DF, UK.
 
-## Requirements
-
-The following libraries are required to run the web service:
+## Technologies Used
 
 * [Python][1]
 * [Flask][2]
 * [Requests][4]
+* [Google Maps Geocoding API][10]
+* [HTML5][11]
+* [JavaScript][12]
+
+## Requirements
+
+The following libraries are required to run the web service:
+
+* [Python][1] (see the website for installation instructions)
+* [Flask][2] (`easy_install flask` to install in your environment)
+* [Requests][4] (`easy_install requests` to install in your environment)
 
 The end user is expected to be using a modern W3C compliant browser that
 supports the [W3C geolocation specifications][5].  My personal favourite is
@@ -26,12 +35,12 @@ Having downloaded/cloned this project, beginning by edit the server settings
 in the `as_the_crow_flies.py` file.  In particular, change the following
 variables:
 
-* `HOST`: the IP address or domain name for the web service.
+* `HOST`: the domain name or IP address for the web service.
 * `PORT`: the port for the web service.
 * `DEBUG_MODE`: whether or not [debug mode][9] is switched on.
 
-Then, in the `example.html` file, edit the `url` in the `getDistance` Javascript
-function (line 56) to have the same hostname and port number.
+Then, in the `example.html` file, edit the `url` variable in the `getDistance`
+JavaScript function (line 56) to have the same domain name and port number.
 
 #### Local deployment
 
@@ -161,7 +170,7 @@ where each field is as follows:
 ## License
 
 This project is licensed under the terms and conditions of [The MIT
-License][10].  Please see the `license.txt` file for more details.
+License][13].  Please see the `license.txt` file for more details.
 
 [1]: http://www.python.org/ "Python"
 [2]: http://flask.pocoo.org/ "Flask"
@@ -172,4 +181,7 @@ License][10].  Please see the `license.txt` file for more details.
 [7]: http://flask.pocoo.org/docs/deploying/ "Deployment options for Flask"
 [8]: http://flask.pocoo.org/docs/quickstart/#quickstart-deployment "Deploying to a web server"
 [9]: http://flask.pocoo.org/docs/quickstart/#debug-mode "Flask debug mode"
-[10]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
+[10]: https://developers.google.com/maps/documentation/geocoding/ "Google Maps Geocoding API"
+[11]: http://en.wikipedia.org/wiki/HTML5 "HTML5 Wikipedia entry"
+[12]: http://en.wikipedia.org/wiki/JavaScript "JavaScript Wikipedia entry"
+[13]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
