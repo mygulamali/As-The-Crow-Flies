@@ -100,7 +100,7 @@ Thus an example request may be something like:
 
 `http://www.example.com/as_the_crow_flies?q=Google%20Campus%2C%20London&u=miles`
 
-Note: it's always a code idea to URL escape characters in the parameter strings.
+Note: it's always a good idea to URL escape characters in the parameter strings.
 
 #### Response
 
