@@ -4,7 +4,7 @@
 
 This is a toy web app that I wrote using [Python][1]/[Flask][2] as part of
 a job application for a developer position at a startup in London.  It consists
-of a web service and web page that calculate the "as the crow flies" distance
+of a web service and web page that calculates the "as the crow flies" distance
 between the user's location and [White Bear Yard][3] at 144A Clerkenwell Road,
 London, EC1R 5DF, UK.
 
@@ -36,15 +36,11 @@ function (line 56) to have the same hostname and port number.
 #### Local deployment
 
 In a terminal window, navigate to the directory containing this project and
-then execute:
-`python as_the_crow_flies.py`
-in order to run the web service.
+then execute, `python as_the_crow_flies.py`, in order to run the web service.
 
-Then, in another terminal window, in the project directory, execute:
-`python -m SimpleHTTPServer`
-to begin a web server.  This will inform you where the HTTP server is being
-served eg.
-`Serving HTTP on 0.0.0.0 port 8000 ...`
+Then, in another terminal window, in the project directory, execute,
+`python -m SimpleHTTPServer`, to begin a web server.  This will inform you where
+the HTTP server is being served eg. `Serving HTTP on 0.0.0.0 port 8000 ...`
 Navigate to the `example.html` file using the associated URL in your browser
 (eg. `http://0.0.0.0:8000/example.html`) to view the web page.
 
@@ -54,10 +50,106 @@ The [Flask][2] documentation has some good tutorials about how to deploy a
 [Flask][2] web app ([here][7] and [here][8]) on your particular web server
 environment.
 
+## Usage
+
+#### Request
+
+The web service presents a single API endpoint which can be called with a
+GET HTTP method:
+
+`http://www.example.com/as_the_crow_flies`
+
+This is called with the following parameters:
+
+<table>
+    <th>
+        <td>Parameter</td>
+        <td>Example</td>
+        <td>Details</td>
+    </th>
+    <tr>
+        <td>`q`</td>
+        <td>`Google Campus, London`</td>
+        <td>**required** A query string containing a location.  This could be
+        a latitude and longitude pair separated by a comma, or an address.
+        This will be geocoded by Google Maps geocoder so it may be fairly
+        general.</td>
+    </tr>
+    <tr>
+        <td>`u`</td>
+        <td>`miles`</td>
+        <td>**optional** A keyword which indicates the units for the resulting
+        query.  This may be one of `km`, `m`, `miles` or `yards`.  If it is not
+        one of these, or this keyword is ommited, the result defaults to `km`.</td>
+    </tr>
+</table>
+
+#### Response
+
+The web service responds with a JSON response such as:
+
+    {
+      "status": {
+        "message": ...,
+        "code": ...
+      },
+      "result": {
+        "distance": ...,
+        "elapsed": ...,
+        "units": ...,
+        "address": ...,
+        "lat": ...,
+        "lng": ...
+      }
+    }
+
+where each field is as follows:
+
+<table>
+    <th>
+        <td>Field</td>
+        <td>Details</td>
+    </th>    
+    <tr>
+        <td>`message`</td>
+        <td>Message associated with status of response.</td>
+    </tr>
+    <tr>
+        <td>`code`</td>
+        <td>HTTP response code.</td>
+    </tr>
+    <tr>
+        <td>`distance`</td>
+        <td>Distance between queried address and [White Bear Yard][3].</td>
+    </tr>
+    <tr>
+        <td>`elapsed`</td>
+        <td>Number of milliseconds required to process query.  This does not
+        include the transit time for sending the request or receiving the
+        response.</td>
+    </tr>
+    <tr>
+        <td>`units`</td>
+        <td>Physical units of the distance value.</td>
+    </tr>
+    <tr>
+        <td>`address`</td>
+        <td>Formatted address of the queried address.</td>
+    </tr>
+    <tr>
+        <td>`lat`</td>
+        <td>Latitude of the queried address.</td>
+    </tr>
+    <tr>
+        <td>`lng`</td>
+        <td>Longitude of the queried address.</td>
+    </tr>
+</table>
+
 ## License
 
 This project is licensed under the terms and conditions of [The MIT
-License][10].  Please see the license.txt file for more details.
+License][10].  Please see the `license.txt` file for more details.
 
 [1]: http://www.python.org/ "Python"
 [2]: http://flask.pocoo.org/ "Flask"
