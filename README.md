@@ -72,8 +72,9 @@ This is called with the following parameters:
         <td><code>Google Campus, London</code></td>
         <td><strong>required</strong> A query string containing a location.
         This could be a latitude and longitude pair separated by a comma, or an
-        address.  This will be geocoded by [Google Maps Geocoding API][10] so
-        it may be a fairly general address.</td>
+        address.  This will be geocoded by the
+        <a href="https://developers.google.com/maps/documentation/geocoding/">Google
+        Maps Geocoding API</a> so it may be a fairly general address.</td>
     </tr>
     <tr>
         <td><code>u</code></td>
@@ -159,7 +160,7 @@ where each field is as follows:
 ## License
 
 This project is licensed under the terms and conditions of [The MIT
-License][11].  Please see the `license.txt` file for more details.
+License][10].  Please see the `license.txt` file for more details.
 
 [1]: http://www.python.org/ "Python"
 [2]: http://flask.pocoo.org/ "Flask"
@@ -170,5 +171,4 @@ License][11].  Please see the `license.txt` file for more details.
 [7]: http://flask.pocoo.org/docs/deploying/ "Deployment options for Flask"
 [8]: http://flask.pocoo.org/docs/quickstart/#quickstart-deployment "Deploying to a web server"
 [9]: http://flask.pocoo.org/docs/quickstart/#debug-mode "Flask debug mode"
-[10]: https://developers.google.com/maps/documentation/geocoding/ "Google Maps Geocoding API"
-[11]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
+[10]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
