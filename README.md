@@ -131,7 +131,8 @@ where each field is as follows:
     </tr>
     <tr>
         <td><code>distance</code></td>
-        <td>Distance between queried address and [White Bear Yard][3].</td>
+        <td>Distance between queried address and
+        <a href="http://whitebearyard.com/">White Bear Yard</a>.</td>
     </tr>
     <tr>
         <td><code>elapsed</code></td>
