@@ -16,6 +16,7 @@ London, EC1R 5DF, UK.
 * [Google Maps Geocoding API][10]
 * [HTML5][11]
 * [JavaScript][12]
+* [jQuery][13]
 
 ## Requirements
 
@@ -170,7 +171,7 @@ where each field is as follows:
 ## License
 
 This project is licensed under the terms and conditions of [The MIT
-License][13].  Please see the `license.txt` file for more details.
+License][14].  Please see the `license.txt` file for more details.
 
 [1]: http://www.python.org/ "Python"
 [2]: http://flask.pocoo.org/ "Flask"
@@ -184,4 +185,5 @@ License][13].  Please see the `license.txt` file for more details.
 [10]: https://developers.google.com/maps/documentation/geocoding/ "Google Maps Geocoding API"
 [11]: http://en.wikipedia.org/wiki/HTML5 "HTML5 Wikipedia entry"
 [12]: http://en.wikipedia.org/wiki/JavaScript "JavaScript Wikipedia entry"
-[13]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
+[13]: http://jquery.com/ "jQuery"
+[14]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
