@@ -1,12 +1,12 @@
-# As The Crow Flies
+# Geodesics
 
 ## Synopsis
 
 This is a toy web app that I wrote using [Python][1]/[Flask][2] as part of
-a job application for a developer position at a startup in London.  It consists
-of a web service and web page that calculates the "as the crow flies" distance
-between the user's location and [White Bear Yard][3] at 144A Clerkenwell Road,
-London, EC1R 5DF, UK.
+a job application.  It consists of a web service and web page that calculates
+the [geodesic distance][15] between the user's location and another, fixed,
+location (in this case, [White Bear Yard][3] at 144A Clerkenwell Road, London,
+EC1R 5DF, UK).
 
 ## Technologies Used
 
@@ -33,7 +33,7 @@ supports the [W3C geolocation specifications][5].  My personal favourite is
 ## Setup
 
 Having downloaded/cloned this project, beginning by edit the server settings
-in the `as_the_crow_flies.py` file.  In particular, change the following
+in the `geodesics.py` file.  In particular, change the following
 variables:
 
 * `HOST`: the domain name or IP address for the web service.
@@ -46,7 +46,7 @@ JavaScript function (line 56) to have the same domain name and port number.
 #### Local deployment
 
 In a terminal window, navigate to the directory containing this project and
-then execute, `python as_the_crow_flies.py`, in order to run the web service.
+then execute, `python geodesics.py`, in order to run the web service.
 
 Then, in another terminal window, in the project directory, execute,
 `python -m SimpleHTTPServer`, to begin a web server.  This will inform you where
@@ -67,7 +67,7 @@ environment.
 The web service presents a single API endpoint which can be called with a
 GET HTTP method:
 
-`http://www.example.com/as_the_crow_flies`
+`http://www.example.com/geodesics`
 
 This is called with the following parameters:
 
@@ -99,7 +99,7 @@ This is called with the following parameters:
 
 Thus an example request may be something like:
 
-`http://www.example.com/as_the_crow_flies?q=Google%20Campus%2C%20London&u=miles`
+`http://www.example.com/geodesics?q=Google%20Campus%2C%20London&u=miles`
 
 Note: it's always a good idea to URL escape characters in the parameter strings.
 
@@ -141,8 +141,8 @@ where each field is as follows:
     </tr>
     <tr>
         <td><code>distance</code></td>
-        <td>Distance between queried address and
-        <a href="http://whitebearyard.com/">White Bear Yard</a>.</td>
+        <td>Geodesic distance between queried address and your fixed location (ie.
+        <a href="http://whitebearyard.com/">White Bear Yard</a>).</td>
     </tr>
     <tr>
         <td><code>elapsed</code></td>
@@ -187,3 +187,4 @@ License][14].  Please see the `license.txt` file for more details.
 [12]: http://en.wikipedia.org/wiki/JavaScript "JavaScript Wikipedia entry"
 [13]: http://jquery.com/ "jQuery"
 [14]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
+[15]: http://en.wikipedia.org/wiki/Geodesic "Geodesic"
