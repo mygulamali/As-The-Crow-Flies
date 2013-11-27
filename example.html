@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>As The Crow Flies Example</title>
+	<title>Geodesics Example</title>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<style>
 	    html { font-size: 62.5%; margin: 0; padding: 0; height: 100%; }
@@ -22,16 +22,17 @@
 <body>
 
 <header>
-    <h1>As The Crow Flies Example</h1>
+    <h1>Geodesics Example</h1>
 </header>
 
 <div id="map">MAP</div>
 
 <div id="results">
-    <p>As the crow flies, <a href="http://whitebearyard.com/">White Bear Yard</a> is:<br />
-    <span class="distance">0.0</span> <span class="units">km</span><br />
-    from your current location:<br />
-    <span class="address">144A Clerkenwell Rd, London, Greater London EC1R 5DF, UK</span></p>
+    <p><span class="address">144A Clerkenwell Rd, London, Greater London EC1R 5DF, UK</span></p>
+    <p>The geodesic distance between <a href="http://whitebearyard.com/">White Bear Yard</a> and
+    this location is:<br />
+    <span class="distance">0.0</span> <span class="units">km</span>
+    </p>
     
     <p>Units?
     <select id="units" onchange="refresh()">
@@ -53,7 +54,7 @@ function checkGeolocation() {
 }
 
 function getDistance(position) {
-    url = 'http://127.0.0.1:5000/as_the_crow_flies';
+    url = 'http://127.0.0.1:5000/geodesics';
     query = position.coords.latitude.toString()+','+position.coords.longitude.toString();
     $.get(url, {'q': query, 'u': $('#units')[0].value}, function(data) {
         $('#results .distance')[0].innerHTML = Math.round(data['result']['distance']*1000)/1000;
