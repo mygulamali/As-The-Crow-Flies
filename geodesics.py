@@ -79,8 +79,8 @@ def create_response(code,message,lat,lng,address,distance,units):
 
 app = Flask(__name__)
 
-@app.route("/as_the_crow_flies")
-def as_the_crow_flies():
+@app.route("/geodesics")
+def geodesics():
     t_start = time.time()
     query, units = parse_query(request.args)
     if query:
